@@ -1,0 +1,15 @@
+# Use with the supplied checksum-verified archives and scripts/verify_images.py.
+services:
+  postgres:
+    image: localhost/imu-postgres:18-20261020
+    pull_policy: never
+  migrate:
+    pull_policy: never
+  api:
+    pull_policy: never
+  worker:
+    pull_policy: never
+  worker-whole:
+    pull_policy: never
+  query:
+    pull_policy: never

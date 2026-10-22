@@ -1,0 +1,38 @@
+{
+  "schema": "imu.delivery.acceptance.v2",
+  "engineering_passed": true,
+  "customer_accuracy_accepted": false,
+  "production_deployed": false,
+  "service_version": "1.1.0",
+  "library_version": "1.0.0",
+  "wheel_sha256": "2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60",
+  "service_tests": {
+    "tests": 67,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "library_tests": {
+    "tests": 27,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "evidence": {
+    "tests.json": "4e0a79e7e54bd5fbc5194dc8eec66bebfb1b2e934a97c3d8b8ab6f576df1b6e3",
+    "container-acceptance.json": "b1301d43f7def07cefce5e64255e90968fe8c98d63f148bf58b4c5f95dcb1b8c",
+    "image-consistency.json": "17cf9b3860bf8a1f40e74716eb3556b96adaacdfbe0a951cc714418edcc70a3a",
+    "image-export.json": "c1a826ee0eeac2ccb24e37ef20584f427fa17fcf032a4d288238ea98113a598f",
+    "analysis-capacity.json": "44c27fd0dc55813e7725755728d08d1c658a3d55764cd22406803dde3dd51821",
+    "clean-install.json": "dfed4c206afe41a98b22fe4ae0f73750a9b1e52c4e23203f300ffbda637084a1",
+    "release-identity.json": "0b9fc42c7e3004cbdca65b953ce46108d15a8eaa8f689b19e2e706fe2664fa86",
+    "service-tests.xml": "fdff96b4caf30c8fddca0be2820b79fc60e6f7dc5fe5e1df90cc8dfa0243fb31",
+    "library-tests.xml": "275a5fac7641d4cfafb61d9d81d63cc657b586b171a90496ac664a188daa0105"
+  },
+  "inherited_model_evidence": "evidence/model-baseline-1.0.0",
+  "limitations": [
+    "Research reference is not independent customer validation",
+    "Original 24/25-hour capacity belongs to the unchanged model and original host",
+    "This release adds calendar statistics; it does not improve model accuracy"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "imu.whole.transport-capacity.v1",
+  "passed": true,
+  "samples": 2250000,
+  "model": "deterministic test backend; NOT E7 accuracy or compute benchmark",
+  "wire_bytes": 127899231,
+  "staged_bytes": 58500000,
+  "input_sha256": "c2a2431bf831b77aac288fc209fd8900715af3a2acf060b64b9a1d8afc79b897",
+  "parse_seconds": 6.690258727991022,
+  "accept_seconds": 2.1402891959878616,
+  "worker_seconds": 0.77754331700271,
+  "memory": {
+    "started": {
+      "VmHWM": 60960,
+      "VmRSS": 60960
+    },
+    "parsed": {
+      "VmHWM": 74860,
+      "VmRSS": 74172
+    },
+    "accepted": {
+      "VmHWM": 75504,
+      "VmRSS": 74404
+    },
+    "completed": {
+      "VmHWM": 349868,
+      "VmRSS": 173968
+    }
+  },
+  "peak_rss_kib": 349868,
+  "getrusage_peak_kib": 5027872,
+  "memory_measurement_note": "Use Linux /proc/self/status VmHWM. getrusage produced a contradictory larger value in the local harness; retained separately, not interpreted as resident memory."
+}

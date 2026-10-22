@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "backend": "native_cpu",
+  "service_version": "1.0.0",
+  "library_version": "1.0.0",
+  "wheel_sha256": "2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60",
+  "images": [
+    {
+      "reference": "localhost/imu-runtime:1.0.0",
+      "engine_image_id": "sha256:8c468c72d806bfdace9a26c567a047c03d228b658f20b61700747ad7ef20a6b8",
+      "rootfs_diff_ids": [
+        "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+        "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+        "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+        "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+        "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+        "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+        "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+        "sha256:b0d46bd1bdab40700f18d49eaf842d54bba6d07b1f5d5696acd4009cd9c0768e"
+      ],
+      "size_bytes": 2241277874
+    },
+    {
+      "reference": "localhost/imu-query:1.0.0",
+      "engine_image_id": "sha256:73c5cdd55846cb6880992f4c6936a4bc37553bf82cdff177d3b517dd7a726046",
+      "rootfs_diff_ids": [
+        "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+        "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+        "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+        "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+        "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+        "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+        "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+        "sha256:7fb9f4e12673ca0701a296a46b0df7a9c6b745da9a22e9a9b9441efa433b9004"
+      ],
+      "size_bytes": 495213254
+    }
+  ],
+  "service_files": {
+    "worker.py": "f0e84646d8894cd897dfe5d3a1c5bf6ecac8e4978bc6e217cc956c342fcf809c",
+    "api.py": "9866a487ae8c4b94207924c251fcb30262d84fb865af6c9cd360dcd058bb3054",
+    "query.py": "eab9492d6aa907599e8f8b98324a109fa78d0962f347c0adc01a28f200d0ec14",
+    "models.py": "76a029683ca1db512b7a281f94d9941ea6f5671028e962388541c5bc2cffe0e6",
+    "codec.py": "a5abbb3da427a48144f14486ad4f2807261c5c893ae2307d33862f5af91d7ad7",
+    "ingest.py": "651835e6c02cb750e7ea54e8879836591b68642a0698eb921ed0e4b39f620b45",
+    "migration_v2.sql": "f5351b463e8d7341f3796dadbcf54e55012c18d2ad8dbfa8722c06c5f5693672",
+    "replay.py": "2600fbb2592df1e696842549206a70da216aeda0801e58e1d96cc95dc60c7385",
+    "schema.sql": "d3f59fec853f32c907621fdf0847862d9103165166302345bafb37a131309baf",
+    "store.py": "bc328a3ed079aeda14d8e02a812fc28d70181f987da578b4dc8bc35c27013f16",
+    "analysis.py": "21c99085c75abc0ae03d3924b0854117a434d971c4f7419108914678247ca738",
+    "readers.py": "3627d4a82d332cac31e5ee435523cccef79dec59cd73e6be6ef71de41205d9e3",
+    "operations.py": "e2b6df59a679ade9c5b8266a122f3ac4014ffde587f8f66257cf705378ef249e",
+    "__init__.py": "f9d020dd3b2ca2d2b374c41db436f0b10ae3af0bc9863ebb49d67a526b7a2334",
+    "cli.py": "a95d0449d21bc99dca397cc8e695ee6f7595256117ece0a03a3ce3f33e8abe8d",
+    "errors.py": "652e72ca0a110f16e05b3c83d5ebd9ea0d0cb70b0601f3872fb7618a5bcfef81",
+    "http_common.py": "a7ec585a1fe9c8622a1dd2d961d5686a14ed858b3ad602fd33a835b6cdcbfaef",
+    "settings.py": "43b6fa945d8338e64911ec93f1722084a78601f27c531669bfb27029316254e5",
+    "release.py": "04db92116a338168197b62471bb6df6e117a82306e5b7a4327943ca33e4f8ee7"
+  },
+  "library_inventory_sha256": "c15281481b91377624f9b13e4f2173acf7c55b207b63f451d8b20be4704db9cf"
+}

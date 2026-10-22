@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "archive": "imu-images-1.1.0.tar.gz",
+  "bytes": 770376534,
+  "sha256": "2b7490cc3d9ea8da6f1d42b27972729988d714209e065cf793c50b4586c2283b",
+  "all_layers_independently_rehashed": true,
+  "images": [
+    {
+      "id": "5866be3c808af9930c8dec15194ec30f47122644f835d10b304eab35c777c937",
+      "tags": [
+        "localhost/imu-runtime:1.1.0"
+      ],
+      "engine_image_id": "sha256:ff37ccdc93ab36b6e6903e4f52036aaaae0d824ecd8d0c16ac2a25fd749e4482",
+      "rootfs_diff_ids": [
+        "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+        "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+        "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+        "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+        "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+        "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+        "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+        "sha256:70f109b0895d4fbc089ad7e08e1611fffd7050fa7f2e328c1ab18447ef647cad"
+      ],
+      "architecture": "amd64",
+      "os": "linux",
+      "user": "10001:10001"
+    },
+    {
+      "id": "a77c0ee93c682f316516d00f99a27fb92420c3ac11c49926ce9f46e2598816ba",
+      "tags": [
+        "localhost/imu-query:1.1.0"
+      ],
+      "engine_image_id": "sha256:7bad5fc92ca21c603ab8cd20742f99a053dcea51bfd3a867a9c486aa0edcca35",
+      "rootfs_diff_ids": [
+        "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+        "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+        "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+        "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+        "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+        "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+        "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+        "sha256:d9cfb9c4dc9e5d6301a054c224a23ecf3b50f880b567aa994dc9c52779831d7f"
+      ],
+      "architecture": "amd64",
+      "os": "linux",
+      "user": "10001:10001"
+    },
+    {
+      "id": "29754c7520f4b9654cf8ff98e19ac73b88e255c3a53f6236ebe9d52249bb6df3",
+      "tags": [
+        "localhost/imu-postgres:18-20261020"
+      ],
+      "engine_image_id": "sha256:71620a0f5bece2005b364990f04be6c05d852796413a18716508fa101f8f7a8d",
+      "rootfs_diff_ids": [
+        "sha256:15f1c8eb1ab18eae260c7fb6296434cbe1ff0e1e30fd814ae92a80dd54005e62",
+        "sha256:cc99cbebc90a9189dde2b725040192e1eb1a5dce19487beebffab70c43a119eb",
+        "sha256:822064ba4da50b8dedb0daf4f9cf419580a1f12ffc504054321fbfff9b2c1c87",
+        "sha256:569713d308f31008ce59ea3bc460771c3386b60123ef56338bf0823da64aa776",
+        "sha256:03ac6a7e270e6532eedca4c21f63196a99511aa6d72b7a11d0d2db56f5892e2d",
+        "sha256:58c343b465768795099ba78e883386a38968141c131dec09b4b3886246295e50",
+        "sha256:9e060a122c8711fb140f5cbdb4cefaf81dab7efba8a5ab5b3b1857d19959f3b8",
+        "sha256:3d7d7c29b5c6d0227395056d1a674d7d668dd9a6fde89d67696d04e4378c47b3",
+        "sha256:0a98c15a1485585473be7d043f686686726f03f0da8f33a40a952ea93d4218b2",
+        "sha256:26a8627d1a34611f8bfae69435f9d412eefc4e0d061d165798a1545b4a562a6a",
+        "sha256:37adcce959c302cf2ba4f48960f078211a588d34d27b38aa918b18c9ee1d39d1",
+        "sha256:c2edcdc0cfe48b776c864a94236e691540354592e5402f9044db1ee6ffb25c08",
+        "sha256:01cbdbb8eda830ca57808593c12d82c02bceaeb2ecfa90d721c93cf5df486967"
+      ],
+      "architecture": "amd64",
+      "os": "linux",
+      "user": ""
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "backend": "native_cpu",
+    "service_version": "1.1.0",
+    "library_version": "1.0.0",
+    "wheel_sha256": "2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60",
+    "images": [
+      {
+        "reference": "localhost/imu-runtime:1.1.0",
+        "engine_image_id": "sha256:ff37ccdc93ab36b6e6903e4f52036aaaae0d824ecd8d0c16ac2a25fd749e4482",
+        "rootfs_diff_ids": [
+          "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+          "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+          "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+          "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+          "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+          "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+          "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+          "sha256:70f109b0895d4fbc089ad7e08e1611fffd7050fa7f2e328c1ab18447ef647cad"
+        ],
+        "size_bytes": 2241280946
+      },
+      {
+        "reference": "localhost/imu-query:1.1.0",
+        "engine_image_id": "sha256:7bad5fc92ca21c603ab8cd20742f99a053dcea51bfd3a867a9c486aa0edcca35",
+        "rootfs_diff_ids": [
+          "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+          "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+          "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+          "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+          "sha256:fc3e809f7c714e3d3499b675cf61197e16b6a3c1a1b560012915b15d35802c03",
+          "sha256:7ae402043989ddf9b1ff7e47a750cbdcae6fc3005e1dc6f428915eaaf4bbcb68",
+          "sha256:f07997737236d249e19a06513bef84324825671deaf72103d68050ba923e55bd",
+          "sha256:d9cfb9c4dc9e5d6301a054c224a23ecf3b50f880b567aa994dc9c52779831d7f"
+        ],
+        "size_bytes": 495227790
+      }
+    ],
+    "service_files": {
+      "worker.py": "f0e84646d8894cd897dfe5d3a1c5bf6ecac8e4978bc6e217cc956c342fcf809c",
+      "api.py": "9866a487ae8c4b94207924c251fcb30262d84fb865af6c9cd360dcd058bb3054",
+      "query.py": "0059b965cbd14bd4c9a0028dd52c56e675c739e4c176e1a75b573fb6c9545a12",
+      "step_calendar.py": "484e5a81c3332cfcd8ed9a62a4caa1b17979a0da9c73d52f8305b0a3b52456f5",
+      "models.py": "76a029683ca1db512b7a281f94d9941ea6f5671028e962388541c5bc2cffe0e6",
+      "codec.py": "a5abbb3da427a48144f14486ad4f2807261c5c893ae2307d33862f5af91d7ad7",
+      "ingest.py": "651835e6c02cb750e7ea54e8879836591b68642a0698eb921ed0e4b39f620b45",
+      "migration_v2.sql": "f5351b463e8d7341f3796dadbcf54e55012c18d2ad8dbfa8722c06c5f5693672",
+      "replay.py": "2600fbb2592df1e696842549206a70da216aeda0801e58e1d96cc95dc60c7385",
+      "schema.sql": "d3f59fec853f32c907621fdf0847862d9103165166302345bafb37a131309baf",
+      "store.py": "bc328a3ed079aeda14d8e02a812fc28d70181f987da578b4dc8bc35c27013f16",
+      "analysis.py": "42bd098e14a0903ec2f0f2a44f9595624160df6d76ba968205ca0f4e0fcde227",
+      "readers.py": "3627d4a82d332cac31e5ee435523cccef79dec59cd73e6be6ef71de41205d9e3",
+      "operations.py": "e2b6df59a679ade9c5b8266a122f3ac4014ffde587f8f66257cf705378ef249e",
+      "__init__.py": "a7ad00d2d77d9525836a493134b423b3b4855b18a07b02ed58882eab1c54847a",
+      "cli.py": "a95d0449d21bc99dca397cc8e695ee6f7595256117ece0a03a3ce3f33e8abe8d",
+      "errors.py": "652e72ca0a110f16e05b3c83d5ebd9ea0d0cb70b0601f3872fb7618a5bcfef81",
+      "http_common.py": "7d4443f4730f34f16e3d02d1636289f89bbef1d641ef1271bdcba98cdd18d284",
+      "settings.py": "43b6fa945d8338e64911ec93f1722084a78601f27c531669bfb27029316254e5",
+      "release.py": "04db92116a338168197b62471bb6df6e117a82306e5b7a4327943ca33e4f8ee7"
+    },
+    "library_inventory_sha256": "c15281481b91377624f9b13e4f2173acf7c55b207b63f451d8b20be4704db9cf"
+  }
+}

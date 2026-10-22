@@ -1,0 +1,15 @@
+{
+  "schema": "imu.whole.http-limit.v1",
+  "passed": true,
+  "record_samples": 2250000,
+  "concurrent_uploads": 2,
+  "third_upload_status": 429,
+  "gzip": true,
+  "api_container_memory_limit_bytes": 536870912,
+  "api_container_peak_bytes": 248766464,
+  "upload_and_accept_seconds": 42.807347889989614,
+  "total_seconds": 74.7377934929682,
+  "both_durably_queued": true,
+  "no_partial_results": true,
+  "model_compute_test": false
+}

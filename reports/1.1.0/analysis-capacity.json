@@ -1,0 +1,19 @@
+{
+  "dates": 31,
+  "final_rss_mib": 101.96484375,
+  "memory_measurement": "Linux /proc/self/status VmHWM and VmRSS",
+  "peak_rss_mib": 318.16796875,
+  "response_bytes": 496874,
+  "scope": "synthetic maximum-bound HTTP analysis; in-process, excludes database and network",
+  "segments": 100000,
+  "status": "PASS",
+  "step_events": 100000,
+  "step_segments": 100000,
+  "wall_s": 8.28103628200006,
+  "measurement_environment": {
+    "os": "Linux-7.2.3-zen1-2-zen-x86_64-with-glibc2.44",
+    "machine": "x86_64",
+    "logical_cpus": 16,
+    "cpu_model": "Intel(R) Core(TM) Ultra X7 358H"
+  }
+}

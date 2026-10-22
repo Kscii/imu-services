@@ -1,0 +1,22 @@
+{
+  "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+  "logical_cpus": 12,
+  "host_memory_kib": 32490580,
+  "architecture": "x86_64",
+  "capacity_cpu_quota": 2,
+  "capacity_memory_limit_gib": 8,
+  "threads": 2,
+  "background_load": "Shared Ubuntu host; up to three separately capped capacity containers and temporary validation/build tasks; no exclusive CPU isolation",
+  "base_image_id": "sha256:27aee2a61396b29f45aeba8bc86170d24ea82cb2ca4b44b4ab6069972f923ef5",
+  "candidate_wheel": "imu_inference-1.0.0-py3-none-any.whl",
+  "python": "3.12.15 (main, Oct  6 2026, 02:02:31) [GCC 12.2.0]",
+  "packages": {
+    "imu-inference": "1.0.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.14.1+cpu",
+    "xgboost-cpu": "3.4.1",
+    "scikit-learn": "1.9.1",
+    "mobgap": "1.2.0"
+  }
+}

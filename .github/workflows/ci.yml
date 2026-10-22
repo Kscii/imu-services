@@ -1,0 +1,65 @@
+name: Validate and build CPU images
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:18@sha256:885953109528ad3dfc90362b1a6f50a78620b5315be19f187753d267e484dc5b
+        env:
+          POSTGRES_USER: imu_test
+          POSTGRES_PASSWORD: ci-test-only
+          POSTGRES_DB: imu_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U imu_test -d imu_test"
+          --health-interval 5s --health-timeout 3s --health-retries 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install uv==0.12.10
+      - run: cd vendor && sha256sum -c SHA256SUMS
+      - run: uv sync --frozen --extra worker
+      - run: uv run --frozen --extra worker ruff check .
+      - run: uv run --frozen --extra worker pytest -q
+        env:
+          IMU_TEST_DATABASE_URL: postgresql://imu_test:ci-test-only@localhost:5432/imu_test
+      - run: docker compose --env-file .env.example config --no-interpolate --quiet
+      - run: bash -n operations/*.sh
+  images:
+    needs: validate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install uv==0.12.10
+      - run: uv sync --frozen --extra worker
+      - name: Build locked image
+        env:
+          REVISION: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          version="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          for target in runtime query; do
+            image="ghcr.io/${REPOSITORY,,}-${target}:${REVISION}"
+            docker build --target "$target" --label "org.opencontainers.image.revision=$REVISION" \
+              -t "$image" -t "localhost/imu-${target}:${version}" .
+            docker run --rm "$image" release-info
+          done
+      - name: Real-model container acceptance
+        run: uv run --frozen --extra worker python scripts/container_acceptance.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: container-acceptance-${{ github.sha }}
+          path: reports/container-acceptance-*.json

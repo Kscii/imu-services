@@ -1,0 +1,13 @@
+{
+  "schema": "imu.delivery.origin.v1",
+  "upstream": {
+    "source_commit": "80fb09388cd4ae1101366464ef9c4b50f360f0ff",
+    "adopted_calendar_draft": {
+      "src/imu_services/analysis.py": "6ff1c5ad9baf94e860e4ab9e9a11823430a01ab267d1c55b445c9caae357e11e",
+      "src/imu_services/step_calendar.py": "484e5a81c3332cfcd8ed9a62a4caa1b17979a0da9c73d52f8305b0a3b52456f5",
+      "tests/test_analysis.py": "c9a0be8361053fbdf06f782938268f34b9f2e741858bc396ce3c6d3998c403be",
+      "tests/test_step_calendar.py": "e4c8f126df7e3bc889711ffb8874cb39d7b0a363d349f3849ac04ba035595027"
+    }
+  },
+  "scope": "New customer history from reviewed source; original development repositories retained internally"
+}

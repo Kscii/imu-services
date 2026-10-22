@@ -1,0 +1,50 @@
+{
+  "library_code_sha256": "96fb8e49957fb917f2ed21e42512ac025d72494cf04269f4bc92b90fff6806b2",
+  "service_files": {
+    "__init__.py": "f9d020dd3b2ca2d2b374c41db436f0b10ae3af0bc9863ebb49d67a526b7a2334",
+    "settings.py": "43b6fa945d8338e64911ec93f1722084a78601f27c531669bfb27029316254e5",
+    "schema.sql": "d3f59fec853f32c907621fdf0847862d9103165166302345bafb37a131309baf",
+    "codec.py": "a5abbb3da427a48144f14486ad4f2807261c5c893ae2307d33862f5af91d7ad7",
+    "store.py": "bc328a3ed079aeda14d8e02a812fc28d70181f987da578b4dc8bc35c27013f16",
+    "models.py": "76a029683ca1db512b7a281f94d9941ea6f5671028e962388541c5bc2cffe0e6",
+    "http_common.py": "a7ec585a1fe9c8622a1dd2d961d5686a14ed858b3ad602fd33a835b6cdcbfaef",
+    "api.py": "9866a487ae8c4b94207924c251fcb30262d84fb865af6c9cd360dcd058bb3054",
+    "query.py": "eab9492d6aa907599e8f8b98324a109fa78d0962f347c0adc01a28f200d0ec14",
+    "analysis.py": "21c99085c75abc0ae03d3924b0854117a434d971c4f7419108914678247ca738",
+    "worker.py": "f0e84646d8894cd897dfe5d3a1c5bf6ecac8e4978bc6e217cc956c342fcf809c",
+    "cli.py": "a95d0449d21bc99dca397cc8e695ee6f7595256117ece0a03a3ce3f33e8abe8d",
+    "operations.py": "e2b6df59a679ade9c5b8266a122f3ac4014ffde587f8f66257cf705378ef249e",
+    "release.py": "04db92116a338168197b62471bb6df6e117a82306e5b7a4327943ca33e4f8ee7",
+    "errors.py": "652e72ca0a110f16e05b3c83d5ebd9ea0d0cb70b0601f3872fb7618a5bcfef81",
+    "readers.py": "3627d4a82d332cac31e5ee435523cccef79dec59cd73e6be6ef71de41205d9e3",
+    "replay.py": "2600fbb2592df1e696842549206a70da216aeda0801e58e1d96cc95dc60c7385",
+    "ingest.py": "651835e6c02cb750e7ea54e8879836591b68642a0698eb921ed0e4b39f620b45",
+    "migration_v2.sql": "f5351b463e8d7341f3796dadbcf54e55012c18d2ad8dbfa8722c06c5f5693672"
+  },
+  "results": [
+    {
+      "file": "library-tests.xml",
+      "sha256": "d90590ff73fcd638b165016e010fe791f852be2c2cd56a7d6570f618d07fff00",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "service-tests.xml",
+      "sha256": "f74d6954b648c25711f2280b68ba962728368e0b2350650b1c60a725920bae53",
+      "tests": 61,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "file": "deployment-tests.xml",
+      "sha256": "255e1a34edbf53772719b14f9640bb320e1be7e98e7414113521c8654256a14f"
+    }
+  ]
+}

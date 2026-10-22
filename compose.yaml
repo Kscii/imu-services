@@ -1,0 +1,139 @@
+name: imu
+x-app: &app
+  restart: unless-stopped
+  init: true
+  read_only: true
+  tmpfs: ["/tmp:size=268435456,mode=1777"]
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: ["ALL"]
+  logging: &logs
+    driver: json-file
+    options: {max-size: "10m", max-file: "3"}
+  stop_grace_period: 90s
+  networks: [backend]
+x-runtime-env: &runtime-env
+  IMU_DATABASE_URL: postgresql://imu_runtime:${IMU_RUNTIME_DB_PASSWORD:?set hex password}@postgres:5432/imu
+  IMU_STEPS_ENABLED: ${IMU_STEPS_ENABLED:-true}
+  IMU_THREADS: ${IMU_THREADS:-2}
+  IMU_POOL_SIZE: "4"
+  OMP_NUM_THREADS: ${IMU_THREADS:-2}
+  OPENBLAS_NUM_THREADS: ${IMU_THREADS:-2}
+  MKL_NUM_THREADS: ${IMU_THREADS:-2}
+services:
+  postgres:
+    image: postgres:18@sha256:885953109528ad3dfc90362b1a6f50a78620b5315be19f187753d267e484dc5b
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: imu
+      POSTGRES_USER: imu_admin
+      POSTGRES_PASSWORD: ${IMU_ADMIN_DB_PASSWORD:?set hex password}
+      PGDATA: /var/lib/postgresql/18/docker
+    volumes: ["database:/var/lib/postgresql"]
+    networks: [backend]
+    mem_limit: 1g
+    cpus: 1.0
+    shm_size: 256m
+    logging: *logs
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U imu_admin -d imu"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  migrate:
+    <<: *app
+    image: ${IMU_QUERY_IMAGE:?select immutable query image}
+    restart: "no"
+    environment:
+      IMU_DATABASE_URL: postgresql://imu_admin:${IMU_ADMIN_DB_PASSWORD}@postgres:5432/imu
+      IMU_RUNTIME_DB_PASSWORD: ${IMU_RUNTIME_DB_PASSWORD}
+      IMU_QUERY_DB_PASSWORD: ${IMU_QUERY_DB_PASSWORD:?set hex password}
+    entrypoint: ["/bin/sh", "-ec"]
+    command: ["imu-service migrate && imu-service install-roles"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    mem_limit: 384m
+    cpus: 1.0
+  api:
+    <<: *app
+    networks: [backend, http]
+    image: ${IMU_RUNTIME_IMAGE:?select immutable runtime image}
+    command: ["api"]
+    environment:
+      <<: *runtime-env
+      IMU_WRITE_TOKEN: ${IMU_WRITE_TOKEN:?set write token}
+      IMU_MAX_PENDING_BYTES: ${IMU_MAX_PENDING_BYTES:-536870912}
+      IMU_MAX_OPEN_RUNS: ${IMU_MAX_OPEN_RUNS:-1000}
+      IMU_SIGN_ADAPTATION: ${IMU_SIGN_ADAPTATION:-false}
+      IMU_ADMIT_NEW_RUNS: ${IMU_ADMIT_NEW_RUNS:-true}
+      IMU_MAX_WHOLE_RUNS: ${IMU_MAX_WHOLE_RUNS:-4}
+      IMU_MAX_WHOLE_PENDING_BYTES: ${IMU_MAX_WHOLE_PENDING_BYTES:-536870912}
+    ports: ["127.0.0.1:${IMU_API_PORT:-8100}:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck: &http-health
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+  worker:
+    <<: *app
+    image: ${IMU_RUNTIME_IMAGE}
+    command: ["worker"]
+    environment: *runtime-env
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    deploy:
+      replicas: ${IMU_WORKERS:-2}
+    mem_limit: 2g
+    cpus: ${IMU_WORKER_CPUS:-2}
+    healthcheck:
+      test: ["CMD", "imu-service", "worker-health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 180s
+  worker-whole:
+    <<: *app
+    image: ${IMU_RUNTIME_IMAGE}
+    command: ["worker"]
+    environment:
+      <<: *runtime-env
+      IMU_WORKER_MODE: whole_record
+      IMU_SIGN_ADAPTATION: ${IMU_SIGN_ADAPTATION:-false}
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    deploy:
+      replicas: ${IMU_WHOLE_WORKERS:-1}
+    mem_limit: ${IMU_WHOLE_MEMORY:-8g}
+    cpus: ${IMU_WHOLE_CPUS:-2}
+    stop_grace_period: 90s
+    healthcheck:
+      test: ["CMD", "imu-service", "worker-health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 180s
+  query:
+    <<: *app
+    networks: [backend, http]
+    image: ${IMU_QUERY_IMAGE}
+    command: ["query"]
+    environment:
+      IMU_DATABASE_URL: postgresql://imu_query:${IMU_QUERY_DB_PASSWORD}@postgres:5432/imu
+      IMU_READ_TOKEN: ${IMU_READ_TOKEN:?set read token}
+      IMU_POOL_SIZE: "4"
+    ports: ["127.0.0.1:${IMU_QUERY_PORT:-8101}:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    mem_limit: 384m
+    cpus: 1.0
+    healthcheck: *http-health
+networks:
+  backend:
+    internal: true
+  http: {}
+volumes:
+  database:

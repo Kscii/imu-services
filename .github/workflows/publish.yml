@@ -1,0 +1,72 @@
+name: Publish verified images from draft release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing draft release tag
+        required: true
+        default: v1.1.0
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Verify private release and exact archive
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$REPOSITORY" --jq .private)" = true
+          version="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$TAG" = "v$version"
+          test "$(gh release view "$TAG" --json isDraft --jq .isDraft)" = true
+          mkdir -p .release
+          gh release download "$TAG" --pattern "imu-delivery-$version.tar.gz*" --dir .release
+          cd .release
+          sha256sum -c "imu-delivery-$version.tar.gz.sha256"
+          tar -xzf "imu-delivery-$version.tar.gz"
+          cd "imu-delivery-$version"
+          sha256sum -c SHA256SUMS > checksum-verification.log
+          docker load -i "imu-images-$version.tar.gz"
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: python scripts/verify_dual_images.py --tag 1.1.0 --output .release/image-verification.json
+      - name: Publish same image contents and record registry digests
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          REPOSITORY: ${{ github.repository }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io -u "$GH_ACTOR" --password-stdin
+          for target in runtime query; do
+            ref="ghcr.io/${REPOSITORY,,}-$target:$version"
+            if docker manifest inspect "$ref" >/dev/null 2>&1; then
+              docker pull "$ref"
+              test "$(docker inspect --format '{{.Id}}' "$ref")" = "$(docker inspect --format '{{.Id}}' "localhost/imu-$target:$version")"
+              docker inspect --format '{{index .RepoDigests 0}}' "$ref" >> .release/registry-images.txt
+              continue
+            fi
+            docker tag "localhost/imu-$target:$version" "$ref"
+            docker push "$ref"
+            docker inspect --format '{{index .RepoDigests 0}}' "$ref" >> .release/registry-images.txt
+          done
+          for target in runtime query; do
+            package="${REPOSITORY##*/}-$target"
+            gh api "users/${REPOSITORY%%/*}/packages/container/$package" > ".release/package-$target.json"
+            test "$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["visibility"])' ".release/package-$target.json")" = private
+          done
+          gh release upload "$TAG" .release/registry-images.txt .release/image-verification.json
+          gh release upload "$TAG" .release/package-runtime.json .release/package-query.json
+          cat .release/registry-images.txt >> "$GITHUB_STEP_SUMMARY"

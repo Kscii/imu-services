@@ -1,0 +1,859 @@
+{
+  "schema": "imu.e7.packaging-parity.v1",
+  "records": [
+    {
+      "index": 0,
+      "samples": 6690,
+      "baseline_max_abs_error": 3.5762786865234375e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 6170,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 6170,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 2294,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 9.864109947928227
+    },
+    {
+      "index": 1,
+      "samples": 12057,
+      "baseline_max_abs_error": 4.76837158203125e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 6047,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 6047,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 2666,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 10.765426105936058
+    },
+    {
+      "index": 2,
+      "samples": 9943,
+      "baseline_max_abs_error": 3.5762786865234375e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 9734,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 9734,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 4353,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 13.18628251797054
+    },
+    {
+      "index": 3,
+      "samples": 12858,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 12691,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 12691,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 5130,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 17.288719265023246
+    },
+    {
+      "index": 4,
+      "samples": 14179,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 13491,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 13491,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6015,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 18.148108805995435
+    },
+    {
+      "index": 5,
+      "samples": 15203,
+      "baseline_max_abs_error": 5.960464477539062e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 14977,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 14977,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6578,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 19.401633100002073
+    },
+    {
+      "index": 6,
+      "samples": 4413,
+      "baseline_max_abs_error": 3.5762786865234375e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 3855,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 3855,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 2731,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 5.082996204029769
+    },
+    {
+      "index": 7,
+      "samples": 2017,
+      "baseline_max_abs_error": 2.384185791015625e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 1609,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 1609,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 507,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 2.3110433740075678
+    },
+    {
+      "index": 8,
+      "samples": 10375,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 9981,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 9981,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 5314,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 12.64811422699131
+    },
+    {
+      "index": 9,
+      "samples": 8803,
+      "baseline_max_abs_error": 4.76837158203125e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 8495,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 8495,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 4766,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 12.084767595981248
+    },
+    {
+      "index": 10,
+      "samples": 7574,
+      "baseline_max_abs_error": 5.364418029785156e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 7103,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 7103,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 4000,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 10.431614211993292
+    },
+    {
+      "index": 11,
+      "samples": 10432,
+      "baseline_max_abs_error": 3.5762786865234375e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 10093,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 10093,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 4978,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 15.700651758001186
+    },
+    {
+      "index": 12,
+      "samples": 8574,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 7417,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 7417,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 819,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 11.649798905942589
+    },
+    {
+      "index": 13,
+      "samples": 9100,
+      "baseline_max_abs_error": 5.960464477539062e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 8596,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 8596,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 2700,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 12.79835351195652
+    },
+    {
+      "index": 14,
+      "samples": 9785,
+      "baseline_max_abs_error": 3.5762786865234375e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 8387,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 8387,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 3277,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 13.500700753065757
+    },
+    {
+      "index": 15,
+      "samples": 8524,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 8194,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 8194,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 2882,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 12.259651939966716
+    },
+    {
+      "index": 16,
+      "samples": 3774,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 3688,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 3688,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 1978,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 6.118509166990407
+    },
+    {
+      "index": 17,
+      "samples": 12235,
+      "baseline_max_abs_error": 4.76837158203125e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 11362,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 11362,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6050,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 16.6874947110191
+    },
+    {
+      "index": 18,
+      "samples": 10160,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 9971,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 9971,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6623,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 13.887796591967344
+    },
+    {
+      "index": 19,
+      "samples": 5962,
+      "baseline_max_abs_error": 3.8743019104003906e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 5825,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 5825,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": -1,
+            "applied": true,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 1840,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 7.78389642003458
+    },
+    {
+      "index": 20,
+      "samples": 10493,
+      "baseline_max_abs_error": 5.364418029785156e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 10153,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 10153,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6590,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 14.704925674945116
+    },
+    {
+      "index": 21,
+      "samples": 11074,
+      "baseline_max_abs_error": 4.172325134277344e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 10838,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 10838,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 6977,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 14.627476761932485
+    },
+    {
+      "index": 22,
+      "samples": 6604,
+      "baseline_max_abs_error": 6.258487701416016e-07,
+      "modes": {
+        "ORIGINAL": {
+          "mismatched_samples": 0,
+          "valid_samples": 6311,
+          "diagnostics": {
+            "enabled": false,
+            "experimental": true,
+            "accepted": false,
+            "sign": 1,
+            "applied": false,
+            "reason": "disabled",
+            "scope": "longitudinal_features_only"
+          }
+        },
+        "AUTOMATIC_SIGN": {
+          "mismatched_samples": 0,
+          "valid_samples": 6311,
+          "diagnostics": {
+            "enabled": true,
+            "experimental": true,
+            "accepted": true,
+            "sign": 1,
+            "applied": false,
+            "reason": "accepted",
+            "scope": "longitudinal_features_only",
+            "anchor_samples": 4138,
+            "agreement": 1.0,
+            "fallback": null
+          }
+        }
+      },
+      "seconds": 9.206514365039766
+    }
+  ],
+  "raw_data_exported": false,
+  "peak_rss_kib": 670972,
+  "passed": true
+}

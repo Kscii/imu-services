@@ -1,0 +1,40 @@
+{
+  "schema": "imu.dual-mode.acceptance.v1",
+  "engineering_passed": true,
+  "customer_accuracy_accepted": false,
+  "production_deployed": false,
+  "library_version": "1.0.0",
+  "service_version": "1.0.0",
+  "wheel_sha256": "2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60",
+  "library_tests_passed": 27,
+  "service_tests_passed": 63,
+  "evidence": {
+    "container-acceptance.json": "f30386730f27fb41a7cc5ae39527e6def3a34c3146e3e6e24fa5908b27e48905",
+    "image-consistency.json": "ae0202bec384f7fdab71c9e6cf30774a850d59ca7d10eabcb488bf7704b0a68c",
+    "e7-parity.json": "173d115236aea932103d599a2edc9b166ea9432b7dd1205f418147c39f6a3710",
+    "whole-25h-transport.json": "fc2d54aabc225f2622b68ce688497e56671b244e37c801cec4cacbb9f02ca411",
+    "capacity-90s.json": "cd9660be956b3da98fc681d6f5f3047b567a7dafeee82e192445eb687708ff85",
+    "capacity-1h.json": "16c07c2e68cfc9ee244ef6732ca6a1f408126169bd7d27334fcb5010a7725236",
+    "capacity-8h.json": "3ca747f0f24e3e97db2344ddfc649d97964f13d68ae89d73ba14e3f3acaee35b",
+    "capacity-24h.json": "e6a4b3ece83084ec069fba3db1bbb20188f594e4528756288ae84c3ad941fedf",
+    "capacity-25h.json": "944d7709192e46747e2e6ce24009c710b1f9433a8d5dfced5b6dcb05eecace47",
+    "environment.json": "66984de93f9eb953e574e2089853d4bf528ce05f0262982bf1925ebc5ae2d24b",
+    "image-export.json": "1cb7669a941858c4d7c738364eab5cf1796c14ba7dbe3050857cde76acdd91a5",
+    "tests.json": "a81d66fab201f01f3e574b656f21b2d76f9ae3e3f1446f9876a80c5ea415bce1",
+    "whole-http-limit.json": "c326d3bac130c91e5f69776352dee0cf09b1e67b48d9e58837a1b3db412753bf",
+    "wheel-reproducibility.json": "e617ccd7e5eeb05026284c1ee8e079cdea7123968f33834491b958ef7361fee2",
+    "release-identity.json": "b0ccfbf55d19d1b51d8407d3cf8dca4c75697a4fca633ce1d17625e85d3f1634",
+    "demo-roundtrip.json": "dfd4ec75347c9fe6627ec040a1bafb67646ea53ea74485f06a9bba8c57bc9cf8",
+    "participant-duration.json": "1057834673bc17902fe7bda616cb881b8e2075979176ba6daabce2c126fb671a",
+    "sb1-training-audit.json": "907e8ce082dd5294e9df26023be18cc3b6df56e48183bba5dd01e9e4a239cefd",
+    "e7-training-sources.json": "55fb6aa046da51e69f6dd4b3b566ed998d0e309611a53b405f4663273508cd0e",
+    "participant-duration.csv": "17b8f067523b1577d55c28c02c307b55f457572a2f5fd27eb5f996b57f0c53b9"
+  },
+  "limitations": [
+    "Repeatedly observed research reference, not blind customer validation",
+    "Long recordings are continuous synthetic capacity inputs, not full-day accuracy evidence",
+    "Synthetic capacity input produces no detected GP2 steps; it is not a worst-case movement workload",
+    "Capacity timings measured on a shared host, not a concurrency SLA",
+    "Native CPU backend; ONNX has not passed full-pipeline replacement gates"
+  ]
+}

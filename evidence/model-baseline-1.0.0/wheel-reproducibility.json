@@ -1,0 +1,7 @@
+{
+  "schema": "imu.wheel.reproducibility.v1",
+  "passed": true,
+  "wheel_sha256": "2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60",
+  "source_distribution_sha256": "b9827789e039e328ca3c9ab5074556e5485be14e6947714dbf4b99fab3b9aa67",
+  "method": "Extract source distribution into a fresh directory and build wheel offline; byte-identical SHA256"
+}

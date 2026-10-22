@@ -1,0 +1,93 @@
+{
+  "schema": "imu.whole.capacity.v1",
+  "input": "synthetic_continuous_six_axis_NOT_ACCURACY",
+  "hours": 8.0,
+  "samples": 720000,
+  "threads": 2,
+  "steps": true,
+  "load_seconds": 26.798763125902042,
+  "inference_seconds": 1222.3796800851123,
+  "peak_rss_kib": 1756092,
+  "provenance": {
+    "library_version": "1.0.0",
+    "profile": "e7-hard-positive-smoothed-2026102531-v1",
+    "code_sha256": "96fb8e49957fb917f2ed21e42512ac025d72494cf04269f4bc92b90fff6806b2",
+    "config": {
+      "steps_enabled": true,
+      "mode": "whole_record",
+      "sign_adaptation": false,
+      "profile": "e7-hard-positive-smoothed-2026102531-v1"
+    },
+    "config_sha256": "e539768c5280d7d6e9494c18367459e8d0740acd1c3694c7807e95dbb00712d7",
+    "activity_metadata_sha256": "3892ff84ce701cd2d9cd449de450049896eeb732f20977eadc84d4e38ec0d638",
+    "activity_weights_sha256": "29f0cf22e180740291a06a861e9ab5e45e1fc43aa197cc7661816d63821a818f",
+    "steps_weights_sha256": "6b4316de23718cf74fcc832e2f37b059ac116d576848a4819421762a7ca840d7",
+    "whole_record_metadata_sha256": "f770ea1d0b2a032bb24ab259b77d85c74010d8c4f5f4db2cdcdb51675802b6cc",
+    "whole_record_weights": {
+      "r3": {
+        "file": "r3.ubj",
+        "sha256": "66464bdd4be077c2a49176cacb85a376b91acd6faaf9a1d9357a89fc90f885d0",
+        "source_file": "INVARIANT_GYRO-final-2026102069.ubj",
+        "source_sha256": "66464bdd4be077c2a49176cacb85a376b91acd6faaf9a1d9357a89fc90f885d0"
+      },
+      "r15": {
+        "file": "r15.ubj",
+        "sha256": "b8d8a183f3f2b960771b540e1437fde6a8438f1ececb50ac00fb73a63c294201",
+        "source_file": "D4M50-final-2026102411.ubj.gz",
+        "source_sha256": "7b65b2e1adde97227db0559d7b7dfe2b3f4b8d842e238b3ec646ee33c8a064ce"
+      },
+      "head": {
+        "file": "head.ubj",
+        "sha256": "b9596e53ce786ee1f9630ce23af461e66524abd26095cc5c385756c4b598ab95",
+        "source_file": "2026102531.ubj.gz",
+        "source_sha256": "8c963ff0bb572c0a26f5f9bf6788f3ce8c09bd6d452c906f5e4d407b6b70cd86"
+      },
+      "event": {
+        "file": "event.ubj",
+        "sha256": "af66d3f248e16caf49bad472bd05cc1df5348005564d96cb917011bc232ffd3f",
+        "source_file": "weights-000350.ubj",
+        "source_sha256": "af66d3f248e16caf49bad472bd05cc1df5348005564d96cb917011bc232ffd3f"
+      }
+    }
+  },
+  "statistics": {
+    "schema": "imu.statistics.v1",
+    "through_sample": 720000,
+    "finished": true,
+    "observed_s": 28800.0,
+    "invalid_s": 0.0,
+    "excluded_s": 0.0,
+    "duration_s": {
+      "lying": 0.0,
+      "sitting": 28800.0,
+      "standing": 0.0,
+      "walking_running": 0.0
+    },
+    "fraction_of_observed": {
+      "lying": 0.0,
+      "sitting": 1.0,
+      "standing": 0.0,
+      "walking_running": 0.0
+    },
+    "closed_label_runs": {
+      "lying": 0,
+      "sitting": 1,
+      "standing": 0,
+      "walking_running": 0
+    },
+    "open_label_run": null,
+    "steps": {
+      "enabled": true,
+      "experimental": true,
+      "through_sample": 720000,
+      "estimated_step_count": 0,
+      "analyzed_s": 28800.0,
+      "unresolved_valid_s": 0.0,
+      "coverage_of_processed_valid": 1.0,
+      "estimated_cadence_spm": null,
+      "cadence_scope": "closed_eligible_bouts",
+      "validation_scope": "OxWalk hip; chest accuracy unmeasured"
+    }
+  },
+  "event_count": 29280
+}

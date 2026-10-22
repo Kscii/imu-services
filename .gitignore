@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+.coverage
+.env
+.env.*
+*.env
+!.env.example
+backups/
+*.dump
+*.partial
+artifacts/
+!artifacts/.gitkeep
+
+# Local release payloads and transient validation output
+.release/
+*.log

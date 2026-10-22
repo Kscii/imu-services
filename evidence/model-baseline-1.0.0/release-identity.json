@@ -1,0 +1,23 @@
+{
+  "schema": "imu.release.identity.v1",
+  "passed": true,
+  "release": {
+    "database_schema": 2,
+    "fingerprints": {
+      "incremental.sign_0.gp2_off": "0a30c6a4d7d247cb54a0523df4f507c1d9c8dc85d264d993b6d0247caf6bd298",
+      "incremental.sign_0.gp2_on": "4f41cec2f75bae91cf70a9d0e35c9b2a46e84b242670217da26a28d0684b6c02",
+      "whole_record.sign_0.gp2_off": "5a23c9845b7e9e1a2854a1b7849001d7201c4431b293b903d5e87fc7f0ff5151",
+      "whole_record.sign_0.gp2_on": "2a8a47ce5be40cc129c1b3811405d7c73564fa5fe1d106e0361b1d4d96da7acf",
+      "whole_record.sign_1.gp2_off": "89a40df27952c18ab7585c5429b538e598d9de6003717214fc215ab0b4fcd088",
+      "whole_record.sign_1.gp2_on": "7d3749b36ab386e10a237e57a6c5f10faf4e203de7683c3c33d15b8facb1176d"
+    },
+    "http_major": 2,
+    "library_version": "1.0.0",
+    "service_version": "1.0.0"
+  },
+  "checked_sources": [
+    "Arch locked wheel and service source",
+    "localhost/imu-runtime:1.0.0",
+    "localhost/imu-query:1.0.0"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "service_version": "1.1.0",
+  "tests": 67,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "service_files": {
+    "__init__.py": "a7ad00d2d77d9525836a493134b423b3b4855b18a07b02ed58882eab1c54847a",
+    "analysis.py": "42bd098e14a0903ec2f0f2a44f9595624160df6d76ba968205ca0f4e0fcde227",
+    "api.py": "9866a487ae8c4b94207924c251fcb30262d84fb865af6c9cd360dcd058bb3054",
+    "cli.py": "a95d0449d21bc99dca397cc8e695ee6f7595256117ece0a03a3ce3f33e8abe8d",
+    "codec.py": "a5abbb3da427a48144f14486ad4f2807261c5c893ae2307d33862f5af91d7ad7",
+    "errors.py": "652e72ca0a110f16e05b3c83d5ebd9ea0d0cb70b0601f3872fb7618a5bcfef81",
+    "http_common.py": "7d4443f4730f34f16e3d02d1636289f89bbef1d641ef1271bdcba98cdd18d284",
+    "ingest.py": "651835e6c02cb750e7ea54e8879836591b68642a0698eb921ed0e4b39f620b45",
+    "migration_v2.sql": "f5351b463e8d7341f3796dadbcf54e55012c18d2ad8dbfa8722c06c5f5693672",
+    "models.py": "76a029683ca1db512b7a281f94d9941ea6f5671028e962388541c5bc2cffe0e6",
+    "operations.py": "e2b6df59a679ade9c5b8266a122f3ac4014ffde587f8f66257cf705378ef249e",
+    "query.py": "0059b965cbd14bd4c9a0028dd52c56e675c739e4c176e1a75b573fb6c9545a12",
+    "readers.py": "3627d4a82d332cac31e5ee435523cccef79dec59cd73e6be6ef71de41205d9e3",
+    "release.py": "04db92116a338168197b62471bb6df6e117a82306e5b7a4327943ca33e4f8ee7",
+    "replay.py": "2600fbb2592df1e696842549206a70da216aeda0801e58e1d96cc95dc60c7385",
+    "schema.sql": "d3f59fec853f32c907621fdf0847862d9103165166302345bafb37a131309baf",
+    "settings.py": "43b6fa945d8338e64911ec93f1722084a78601f27c531669bfb27029316254e5",
+    "step_calendar.py": "484e5a81c3332cfcd8ed9a62a4caa1b17979a0da9c73d52f8305b0a3b52456f5",
+    "store.py": "bc328a3ed079aeda14d8e02a812fc28d70181f987da578b4dc8bc35c27013f16",
+    "worker.py": "f0e84646d8894cd897dfe5d3a1c5bf6ecac8e4978bc6e217cc956c342fcf809c"
+  },
+  "junit_sha256": "fdff96b4caf30c8fddca0be2820b79fc60e6f7dc5fe5e1df90cc8dfa0243fb31"
+}
