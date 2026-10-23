@@ -30,8 +30,8 @@ def main():
             for n in z.namelist()
             if n.startswith("imu_inference/") and not n.endswith("/")
         }
-        licenses = {n.split('/licenses/', 1)[1]: hashlib.sha256(z.read(n)).hexdigest()
-                    for n in z.namelist() if '/licenses/' in n and not n.endswith('/')}
+        licenses = {n.split('.dist-info/licenses/', 1)[1]: hashlib.sha256(z.read(n)).hexdigest()
+                    for n in z.namelist() if '.dist-info/licenses/' in n and not n.endswith('/')}
         assert 'LICENSES/CC-BY-SA-4.0.txt' in licenses and 'MODEL_LICENSES.md' in licenses
     code = """
 import hashlib,json,importlib.util,importlib.metadata
@@ -41,7 +41,7 @@ def files(m,suffixes=None):
  r=Path(m.__file__).parent
  return {p.relative_to(r).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in r.rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc' and (suffixes is None or p.suffix in suffixes)}
 d=importlib.metadata.distribution('imu-inference')
-licenses={str(p).split('/licenses/',1)[1]:hashlib.sha256(d.locate_file(p).read_bytes()).hexdigest() for p in d.files if '/licenses/' in str(p)}
+licenses={str(p).split('.dist-info/licenses/',1)[1]:hashlib.sha256(d.locate_file(p).read_bytes()).hexdigest() for p in d.files if '.dist-info/licenses/' in str(p)}
 print(json.dumps(dict(service=files(imu_services,('.py','.sql')),library=files(imu_inference),licenses=licenses,torch_present=importlib.util.find_spec('torch') is not None,service_version=importlib.metadata.version('imu-services'),library_version=importlib.metadata.version('imu-inference'))))
 """
     images = []

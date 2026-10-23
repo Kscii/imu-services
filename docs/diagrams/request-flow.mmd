@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant U as 上游服务
+    participant A as 接入 API
+    participant P as PostgreSQL
+    participant W as 对应模式 worker
+    participant Q as 查询服务
+    alt 整段处理（录制后推荐）
+        U->>A: 一次请求上传完整录制
+        A->>P: 校验并持久保存输入和任务
+        A-->>U: 202 已接受，等待计算
+        W->>P: 领取任务、租约及 fencing token
+        P-->>W: 完整输入
+        W->>W: E7 整段计算
+        W->>P: 事务提交完整结果和终态
+    else 分块处理（持续输出）
+        U->>A: 创建任务，再分批上传
+        A->>P: 持久保存、检查连续接收前沿
+        W->>P: 领取任务和已有检查点
+        W->>W: FC1 有限上下文计算
+        W->>P: 事务提交核心结果、进度和检查点
+        U->>A: seal 确认记录结束
+        A->>P: 保存最终位置
+        W->>P: 处理尾段并提交终态
+    end
+    U->>Q: 查询任务、时间线和统计
+    Q->>P: 只读已提交结果
+    P-->>Q: 结果及有效覆盖范围
+    Q-->>U: 分类时长；可选实验步数

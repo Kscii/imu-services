@@ -1,0 +1,31 @@
+flowchart TB
+    U["公司上游服务<br/>标准化数据／保留原始记录"]
+    B["公司业务服务<br/>查询结果／活动统计"]
+    subgraph HOST["客户服务器 · 单机 Docker Compose"]
+        direction TB
+        G["受控 HTTPS 入口<br/>由部署环境配置"]
+        subgraph RT["复用 runtime 镜像"]
+            A["API · 8100<br/>校验／幂等／接入限额"]
+            I["分块 worker × 2<br/>SB1 / FC1 · 持续输出"]
+            W["整段 worker × 1<br/>E7 · 录制后分析推荐"]
+        end
+        subgraph QT["复用 query 镜像"]
+            Q["query · 8101<br/>只读查询／小时日周统计"]
+            M["migrate<br/>启动时初始化 schema 和角色"]
+        end
+        P[("PostgreSQL 18<br/>输入／持久队列／租约<br/>检查点／结果")]
+        V[("数据库持久卷")]
+        BK["备份脚本<br/>导出 dump 与校验文件"]
+        G -->|"写 token"| A
+        G -->|"读 token"| Q
+        A -->|"事务写入"| P
+        I <-->|"领任务／提交结果"| P
+        W <-->|"领任务／提交结果"| P
+        Q -->|"只读角色"| P
+        M -->|"初始化后退出"| P
+        P --- V
+        P --> BK
+    end
+    U -->|"完整记录或增量数据"| G
+    B -->|"HTTP v2"| G
+    BK -.->|"需配置定时任务和目的地"| OFF["异地主机／备份存储"]

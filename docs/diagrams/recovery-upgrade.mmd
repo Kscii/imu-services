@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph REC["计算进程退出"]
+        direction TB
+        X["worker 异常退出"] --> L["租约超时，任务可重新领取"]
+        L --> F["新 worker 获得新的 fencing token"]
+        F --> C{"任务模式"}
+        C -->|"incremental"| S["恢复已提交检查点<br/>继续未提交范围"]
+        C -->|"whole_record"| R["读取持久完整输入<br/>重新计算整段"]
+        S --> T["事务提交<br/>旧 token 不能覆盖新结果"]
+        R --> T
+    end
+    subgraph CAP["容量管理"]
+        direction TB
+        O["待处理字节／任务数达限额"] --> E["返回可重试错误<br/>上游保留数据并退避重试"]
+    end
+    subgraph UPG["维护窗升级"]
+        direction TB
+        D["暂停新增<br/>完成已有上传和 seal，排空任务"]
+        D --> B["备份数据库／旧配置<br/>保留旧镜像"]
+        B --> N["校验新版本来源和兼容性<br/>迁移、启动和健康检查"]
+        N --> H["业务调用方保持暂停<br/>允许样例任务并验收"]
+        H --> A["验收通过后恢复业务接入"]
+    end
