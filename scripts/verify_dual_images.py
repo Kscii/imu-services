@@ -30,6 +30,9 @@ def main():
             for n in z.namelist()
             if n.startswith("imu_inference/") and not n.endswith("/")
         }
+        licenses = {n.split('/licenses/', 1)[1]: hashlib.sha256(z.read(n)).hexdigest()
+                    for n in z.namelist() if '/licenses/' in n and not n.endswith('/')}
+        assert 'LICENSES/CC-BY-SA-4.0.txt' in licenses and 'MODEL_LICENSES.md' in licenses
     code = """
 import hashlib,json,importlib.util,importlib.metadata
 from pathlib import Path
@@ -37,7 +40,9 @@ import imu_services,imu_inference
 def files(m,suffixes=None):
  r=Path(m.__file__).parent
  return {p.relative_to(r).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in r.rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc' and (suffixes is None or p.suffix in suffixes)}
-print(json.dumps(dict(service=files(imu_services,('.py','.sql')),library=files(imu_inference),torch_present=importlib.util.find_spec('torch') is not None,service_version=importlib.metadata.version('imu-services'),library_version=importlib.metadata.version('imu-inference'))))
+d=importlib.metadata.distribution('imu-inference')
+licenses={str(p).split('/licenses/',1)[1]:hashlib.sha256(d.locate_file(p).read_bytes()).hexdigest() for p in d.files if '/licenses/' in str(p)}
+print(json.dumps(dict(service=files(imu_services,('.py','.sql')),library=files(imu_inference),licenses=licenses,torch_present=importlib.util.find_spec('torch') is not None,service_version=importlib.metadata.version('imu-services'),library_version=importlib.metadata.version('imu-inference'))))
 """
     images = []
     for target in ("runtime", "query"):
@@ -64,6 +69,7 @@ print(json.dumps(dict(service=files(imu_services,('.py','.sql')),library=files(i
             )
         )
         assert actual["service"] == expected and actual["library"] == lib
+        assert actual["licenses"] == licenses
         assert actual["service_version"] == "1.1.1" and actual["library_version"] == "1.0.1"
         assert actual["torch_present"] == (target == "runtime") and info["Config"]["User"] == "10001:10001"
         assert info["Config"].get("Labels", {}).get("org.opencontainers.image.revision") == revision
@@ -86,6 +92,7 @@ print(json.dumps(dict(service=files(imu_services,('.py','.sql')),library=files(i
         images=images,
         service_files=expected,
         library_inventory_sha256=hashlib.sha256(json.dumps(lib, sort_keys=True).encode()).hexdigest(),
+        library_license_files=licenses,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")
