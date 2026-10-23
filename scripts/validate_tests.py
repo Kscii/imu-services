@@ -18,7 +18,7 @@ def source_files(root):
 
 def main():
     root = Path(__file__).resolve().parents[1]
-    output = root/'reports/1.1.0'
+    output = root/'reports/1.1.1'
     output.mkdir(parents=True, exist_ok=True)
     name = 'imu-delivery-tests-' + secrets.token_hex(5)
     subprocess.run([sys.executable, '-m', 'ruff', 'check', '.'], cwd=root, check=True)
@@ -49,7 +49,7 @@ def main():
                       for k in ['tests', 'failures', 'errors', 'skipped']}
             if not counts['tests'] or any(counts[k] for k in ['failures', 'errors', 'skipped']):
                 raise RuntimeError('all service tests must run and pass without skips')
-            report = dict(passed=True, service_version='1.1.0', **counts,
+            report = dict(passed=True, service_version='1.1.1', **counts,
                           service_files=source_files(root/'src/imu_services'),
                           junit_sha256=hashlib.sha256((output/'service-tests.xml').read_bytes()).hexdigest())
             (output/'tests.json').write_text(json.dumps(report, indent=2)+'\n')

@@ -4,10 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "imu-services"
-version = "1.1.0"
+version = "1.1.1"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 requires-python = ">=3.12,<3.13"
 dependencies = [
-  "imu-inference==1.0.0",
+  "imu-inference==1.0.1",
   "fastapi>=0.115,<1",
   "uvicorn>=0.30,<1",
   "psycopg[binary,pool]>=3.2,<4",
@@ -16,7 +18,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-worker = ["imu-inference[runtime]==1.0.0", "torch==2.14.1+cpu"]
+worker = ["imu-inference[runtime]==1.0.1", "torch==2.14.1+cpu"]
 
 [dependency-groups]
 dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
@@ -25,7 +27,7 @@ dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
 imu-service = "imu_services.cli:main"
 
 [tool.uv.sources]
-imu-inference = { path = "vendor/wheels/imu_inference-1.0.0-py3-none-any.whl" }
+imu-inference = { path = "vendor/wheels/imu_inference-1.0.1-py3-none-any.whl" }
 torch = { index = "pytorch-cpu" }
 
 [tool.uv]

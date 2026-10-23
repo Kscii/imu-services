@@ -31,8 +31,8 @@ def main():
         )
     }
     env.update(
-        IMU_RUNTIME_IMAGE="localhost/imu-runtime:1.0.0",
-        IMU_QUERY_IMAGE="localhost/imu-query:1.0.0",
+        IMU_RUNTIME_IMAGE="localhost/imu-runtime:1.1.1",
+        IMU_QUERY_IMAGE="localhost/imu-query:1.1.1",
         IMU_API_PORT=str(api_port),
         IMU_QUERY_PORT=str(query_port),
         IMU_WORKERS="0",

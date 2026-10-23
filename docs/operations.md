@@ -4,7 +4,7 @@
 
 Linux x86_64、Docker Engine 与 Compose；开发构建另需 Python 3.12。默认 2 个分块 worker、1 个整段 worker，容器内存额度合计约 14 GiB；建议至少 16 GiB 可用内存并为宿主机留余量。CPU、磁盘与并发按真实负载调整。
 
-离线包按 [README](../README.md) 校验并加载。在线部署从私有 GHCR 拉取 runtime/query，将完整 @sha256 摘要填入 .env，不使用 latest。运行时不下载模型。
+离线包按 [README](../README.md) 校验并加载。在线部署使用 Release 轻量包，`scripts/create_env.py` 从配套 deployment.json 填入固定 GHCR 摘要。无需登录 GitHub 或手工复制摘要，不使用 latest。离线安装显式传入 `--mode offline`。运行时不下载模型。
 
 scripts/create_env.py 独占创建权限 0600 的 .env，生成数据库密码与读写 token，不打印凭据。按 .env.example 调整资源和线程。PostgreSQL 不开放宿主机端口；API/query 只监听 127.0.0.1:8100/8101，跨主机接入由客户部署受控 TLS 入口。
 
@@ -46,6 +46,11 @@ uv run --frozen --extra worker ruff check .
 IMU_TEST_DATABASE_URL='postgresql://USER:PASSWORD@HOST/TEST_DB' uv run --frozen --extra worker pytest -q
 ```
 
-数据库测试只创建并清理随机 schema；缺少连接会跳过，不能算验收通过。scripts/container_acceptance.py 验证真实模型及容器恢复，清理自己的 Compose 项目。模型原证据位于 evidence/model-baseline-1.0.0，本服务验证位于 reports/1.1.0。
+数据库测试只创建并清理随机 schema；缺少连接会跳过，不能算验收通过。scripts/container_acceptance.py 验证真实模型及容器恢复，清理自己的 Compose 项目。模型原证据位于 evidence/model-baseline-1.0.0，1.1.0 历史服务验证位于 reports/1.1.0；1.1.1 新验证随 Release 和完整离线包的 validation/ 分发。
 
-GitHub main/PR 验证代码。维护者先完成验收、提交报告并打包，建立 Release 草稿并上传离线包及摘要；随后手动运行 publish 工作流，将草稿中已校验的同一镜像上传私有 GHCR，并附上 registry-images.txt 与权限记录，不自动部署生产。离线包包含配套源码、模型库、镜像、报告和摘要。仓库与镜像权限分别核验；客户账号、主机、TLS 和备份配置由交接时指定。
+GitHub main/PR 验证代码。维护者先完成源码与库验证、冻结提交，构建并验收镜像；在新 Release 草稿上传离线包与摘要。publish 工作流校验归档和来源，把同一镜像上传 GHCR，并生成轻量在线部署包。公开条件通过后发布仓库、镜像与新 Release，追加匿名安装验收记录，不自动部署生产。离线包包含配套源码、模型库、镜像、报告和摘要。仓库与镜像权限分别核验；客户账号、主机、TLS 和备份配置由交接时指定。
+
+
+## 1.1.1 补丁升级
+
+模型权重和算法未变，库版本及包含版本常量的代码摘要会变，任务指纹随之改变。先关闭新任务接入、完成已有上传与 seal 并排空任务，再切换新镜像。保留原备份和镜像；不放宽检查点指纹验证以迁就小版本升级。HTTP v2 和数据库 schema 2 保持。

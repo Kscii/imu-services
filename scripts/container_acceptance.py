@@ -42,7 +42,7 @@ def main():
         envfile = Path(tmp)/"test.env"
         envfile.write_text("\n".join(f"{k}={v}" for k, v in settings.items())+"\n")
         envfile.chmod(0o600)
-        command = ["docker", "compose", "--env-file", str(envfile), "-p", "imu-delivery-110-acceptance",
+        command = ["docker", "compose", "--env-file", str(envfile), "-p", "imu-acceptance-"+secrets.token_hex(5),
                    "-f", str(Path("compose.yaml").resolve())]
         if args.offline:
             command.extend(["-f", str(Path("compose.offline.yaml").resolve())])

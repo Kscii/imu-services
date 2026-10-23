@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir uv==0.12.10
 ENV UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=never
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
+COPY LICENSE THIRD_PARTY_NOTICES.md ./
 COPY vendor/ vendor/
 RUN cd vendor && sha256sum -c SHA256SUMS
 COPY src/ src/

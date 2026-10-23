@@ -20,3 +20,8 @@ artifacts/
 # Local release payloads and transient validation output
 .release/
 *.log
+
+# New image/build acceptance binds the frozen commit; shipped as release evidence.
+reports/1.1.1/*
+!reports/1.1.1/tests.json
+!reports/1.1.1/service-tests.xml

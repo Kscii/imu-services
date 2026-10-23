@@ -1,8 +1,8 @@
 # IMU 推理与分析服务
 
-**服务 1.1.0 · 推理库 1.0.0 · HTTP v2 · Linux x86_64 CPU**
+**服务 1.1.1 · 推理库 1.0.1 · HTTP v2 · Linux x86_64 CPU**
 
-将标准化胸前 IMU 数据转成四类活动时间线、累计时长和实验性计步结果。包含持久队列、分块／整段计算、查询与小时／日／周分析。1.1.0 新增日历计步，不更换模型。
+将标准化胸前 IMU 数据转成四类活动时间线、累计时长和实验性计步结果。包含持久队列、分块／整段计算、查询与小时／日／周分析。本次补丁整理交付与安装，不更换模型或提高准确率。
 
 ## 交接入口
 
@@ -10,52 +10,67 @@
 |---|---|
 | 安装、启动、更新和恢复 | [部署与运维](docs/operations.md) |
 | 上传、查询、统计活动和步数 | [接口指南](docs/api.md)、[调用示例](examples/) |
-| 模型、训练数据和验证结果 | [模型与验证](https://github.com/Kscii/imu-inference/blob/main/docs/model.md)；离线位置 `imu-inference/docs/model.md` |
-| 审查软件验证 | [验证入口](reports/README.md)、发布包 manifest.json |
+| 服务拓扑、排队、结果和恢复 | [架构说明](docs/architecture.md) |
+| 模型、训练来源、划分、指标和局限 | [完整模型手册](https://github.com/Kscii/imu-inference/blob/v1.0.1/docs/model.md) |
+| 版本、产物、验证与责任边界 | [交付清单](docs/handoff.md)、对应 Release 的验证附件 |
 
-## 快速运行
+## 在线安装：推荐入口
 
-在完整离线交付包根目录执行：
+主机需要 Linux x86_64、Docker Engine、Docker Compose 和 Python 3.10+。Python 只用于配置和接口检查；模型的 Python 3.12 CPU 环境包含在镜像中。默认资源配置建议至少 16 GiB 可用内存，另为宿主机留余量。
+
+在新的空目录执行。网络下载或校验失败应停止，不能跳过校验继续解压：
 
 ```bash
+set -e
+curl --fail --location --retry 3 -o imu-deploy-1.1.1.tar.gz https://github.com/Kscii/imu-services/releases/download/v1.1.1/imu-deploy-1.1.1.tar.gz
+curl --fail --location --retry 3 -o imu-deploy-1.1.1.tar.gz.sha256 https://github.com/Kscii/imu-services/releases/download/v1.1.1/imu-deploy-1.1.1.tar.gz.sha256
+sha256sum -c imu-deploy-1.1.1.tar.gz.sha256
+tar -xzf imu-deploy-1.1.1.tar.gz
+cd imu-deploy-1.1.1
 sha256sum -c SHA256SUMS
-docker load -i imu-images-1.1.0.tar.gz
-cd imu-services
 python3 scripts/create_env.py
-docker compose -f compose.yaml -f compose.offline.yaml up -d --wait
+docker compose pull
+docker compose up -d --wait --wait-timeout 300
 python3 scripts/smoke_http.py
 ```
 
-`.env` 仅本地生成，不提交 Git。回放使用 150 秒合成六轴信号，两种模式均应报告 149 秒有效观测；它检查服务功能，不证明准确率。真实调用见接口指南。
+轻量部署包固定 runtime/query 的 GHCR 摘要，无需手填镜像地址或安装模型依赖。公开安装无需 GitHub 登录；调用 API 仍需本地生成的读写 token。`.env` 以 0600 权限独占创建，不打印密钥、不覆盖已有配置，也不提交 Git。
 
-开发构建使用 Python 3.12、uv 和 Docker：
+检查使用 150 秒合成六轴信号及 1 秒缺失；两种模式均应得到 149 秒有效观测，并通过日历统计一致性检查。这是工程功能验证，不是识别准确率测试。API/query 默认仅监听本机 8100/8101，远程接入按运维文档配置 TLS 入口。
+
+## 完整离线安装
+
+下载同一 Release 的 `imu-delivery-1.1.1.tar.gz` 和同名 `.sha256`，先校验外层文件再解压。在解压的完整交付包根目录执行：
+
+```bash
+set -e
+sha256sum -c SHA256SUMS
+docker load -i imu-images-1.1.1.tar.gz
+cd imu-services
+python3 scripts/create_env.py --mode offline
+docker compose -f compose.yaml -f compose.offline.yaml up -d --wait --wait-timeout 300
+python3 scripts/smoke_http.py
+```
+
+离线包包含应用和 PostgreSQL 镜像、两个仓库源码、推理库安装产物、文档及验证记录。在线、离线路径对应相同应用镜像内容。
+
+## 开发与更新
+
+开发环境需要 Python 3.12 和 uv。`vendor/wheels/` 固定推理库版本及摘要：
 
 ```bash
 uv sync --frozen --extra worker
-docker build --target runtime -t localhost/imu-runtime:1.1.0 .
-docker build --target query -t localhost/imu-query:1.1.0 .
+uv run --frozen --extra worker ruff check .
+docker build --target runtime -t localhost/imu-runtime:1.1.1 .
+docker build --target query -t localhost/imu-query:1.1.1 .
 ```
 
-## 结构与责任
+数据库测试必须提供隔离 PostgreSQL，跳过数据库测试不能作为完整验收。升级前暂停新任务并排空旧任务，保留备份和旧镜像。1.0.1 库的版本／代码摘要会改变任务指纹，不能直接恢复旧库检查点。
 
-```mermaid
-flowchart LR
-  U[上游：解包、对时、六轴标准化] --> A[接入 API：校验、幂等、限额]
-  A --> P[(PostgreSQL：任务、检查点、结果)]
-  P <--> I[分块 worker：SB1 FC1 与可选 GP2]
-  P <--> W[整段 worker：实验 E7 与可选 GP2]
-  P --> Q[只读查询与分析：活动及步数的小时、日、周统计]
-  Q --> B[客户业务服务]
-```
+## 边界与授权
 
-上游提供 25 Hz 六轴、缺失掩码和带时区起点，保留原始记录并管理人员归属。本服务不解设备原始包、不推断未观测时间、不提供诊断或独立可靠的走跑分类。终态清理服务输入，重算依赖上游重传。
+上游负责设备解包、对时、六轴标准化、原始记录及人员归属。本服务不解原始设备包，不推断未观测时长；没有经验证的独立走跑分类、跌倒或医学诊断能力。GP2 和 E7 的实验标记及默认行为保持原版。
 
-Compose 提供单机恢复与有限队列；生产 TLS、备份目的地、跨机高可用和设备联调由接收环境落实。API/query 默认只绑定本机回环地址。
+交付包括固定模型推理与服务源码，不包括原始受控数据和完整重训工程。Compose 提供单机部署与恢复；客户主机、TLS、异地备份、跨机高可用和设备联调由接收环境落实。现有参考数据不是独立客户盲测，发布不代表客户准确率达到 80%。
 
-## 源码与制品
-
-`src/` 是完整服务实现，`tests/`、`scripts/`、`operations/` 用于验证、打包与运维，`vendor/wheels/` 固定已验收推理库。模型与算法源码在私有 `Kscii/imu-inference` 仓库。
-
-Release 提供离线包与摘要，GHCR 提供 runtime/query 镜像。原始数据和完整训练研究工程不在交付范围；正式源码起点见 [来源清单](provenance/delivery-origin.json)，第三方声明随推理库保留。
-
-工程验证、研究参考效果和客户准确率验收分别记录。现有参考数据不是独立客户盲测，软件发布不代表新客户达到 80%。
+自有服务代码与文档由 Kscii 按 [MIT](LICENSE) 授权。模型及第三方部分保留单独条款，见 [第三方声明](THIRD_PARTY_NOTICES.md) 和推理库 MODEL_LICENSES.md。

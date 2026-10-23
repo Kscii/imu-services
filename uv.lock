@@ -222,13 +222,13 @@ wheels = [
 
 [[package]]
 name = "imu-inference"
-version = "1.0.0"
-source = { path = "vendor/wheels/imu_inference-1.0.0-py3-none-any.whl" }
+version = "1.0.1"
+source = { path = "vendor/wheels/imu_inference-1.0.1-py3-none-any.whl" }
 dependencies = [
     { name = "numpy" },
 ]
 wheels = [
-    { filename = "imu_inference-1.0.0-py3-none-any.whl", hash = "sha256:2c00e09d00d09b0482dfb1ba34a6491b6f9905226288ab0f7aecb9c3dde72d60" },
+    { filename = "imu_inference-1.0.1-py3-none-any.whl", hash = "sha256:3bd016c366623daaaa34de3eba4d4f4efcdf57cbad069fb38093727ddab18a96" },
 ]
 
 [package.optional-dependencies]
@@ -261,7 +261,7 @@ provides-extras = ["runtime"]
 
 [[package]]
 name = "imu-services"
-version = "1.1.0"
+version = "1.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
@@ -288,8 +288,8 @@ dev = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115,<1" },
     { name = "httpx", specifier = ">=0.28,<1" },
-    { name = "imu-inference", path = "vendor/wheels/imu_inference-1.0.0-py3-none-any.whl" },
-    { name = "imu-inference", extras = ["runtime"], marker = "extra == 'worker'", path = "vendor/wheels/imu_inference-1.0.0-py3-none-any.whl" },
+    { name = "imu-inference", path = "vendor/wheels/imu_inference-1.0.1-py3-none-any.whl" },
+    { name = "imu-inference", extras = ["runtime"], marker = "extra == 'worker'", path = "vendor/wheels/imu_inference-1.0.1-py3-none-any.whl" },
     { name = "prometheus-client", specifier = ">=0.21,<1" },
     { name = "psycopg", extras = ["binary", "pool"], specifier = ">=3.2,<4" },
     { name = "torch", marker = "extra == 'worker'", specifier = "==2.14.1+cpu", index = "https://download.pytorch.org/whl/cpu" },

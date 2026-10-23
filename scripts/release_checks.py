@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import tomllib
 import xml.etree.ElementTree as ET
 import zipfile
@@ -29,8 +30,9 @@ def junit(path):
 def check(root, library, images):
     version = tomllib.loads((root/'pyproject.toml').read_text())['project']['version']
     lib_version = tomllib.loads((library/'pyproject.toml').read_text())['project']['version']
-    if (version, lib_version) != ('1.1.0', '1.0.0'):
-        raise ValueError('This evidence is for service 1.1.0 and library 1.0.0')
+    versions = json.loads((root/'release-versions.json').read_text())
+    if (version, lib_version) != (versions['service_version'], versions['library_version']):
+        raise ValueError('Project versions differ from the release contract')
     report_dir = root/'reports'/version
     names = ['tests.json', 'container-acceptance.json', 'image-consistency.json',
              'image-export.json', 'analysis-capacity.json', 'clean-install.json', 'release-identity.json']
@@ -47,18 +49,33 @@ def check(root, library, images):
     if digest(report_dir/'service-tests.xml') != docs['tests.json']['junit_sha256']:
         raise ValueError('Service test result changed')
     service_tests = junit(report_dir/'service-tests.xml')
-    library_tests = junit(library/'provenance/delivery-library-tests.xml')
+    library_tests_path = library/f'provenance/{lib_version}/library-tests.xml'
+    library_tests = junit(library_tests_path)
     wheel = root/f'vendor/wheels/imu_inference-{lib_version}-py3-none-any.whl'
     wheel_sha = digest(wheel)
     baseline = json.loads((root/'evidence/model-baseline-1.0.0/acceptance.json').read_text())
-    if not wheel_sha == baseline['wheel_sha256'] == docs['image-consistency.json']['wheel_sha256']:
-        raise ValueError('Frozen wheel changed')
+    build = json.loads((library/f'.release/{lib_version}/build-validation.json').read_text())
+    if build['source_commit'] != subprocess.check_output(
+            ['git', 'rev-parse', 'HEAD'], cwd=library, text=True).strip():
+        raise ValueError('Library build is from a different source commit')
+    if not build.get('passed') or not (wheel_sha == build['wheel_sha256'] ==
+            build['sdist_rebuilt_wheel_sha256'] == docs['image-consistency.json']['wheel_sha256']):
+        raise ValueError('Candidate wheel differs from its reproducible build or images')
+    regression = json.loads((library/f'provenance/{lib_version}/patch-equivalence.json').read_text())
+    if not regression.get('passed') or regression['baseline_wheel_sha256'] != baseline['wheel_sha256']:
+        raise ValueError('Missing regression against the original frozen model')
     with zipfile.ZipFile(wheel) as z:
         contents = {n.removeprefix('imu_inference/'): hashlib.sha256(z.read(n)).hexdigest()
                     for n in z.namelist() if n.startswith('imu_inference/') and not n.endswith('/')}
     if contents != inventory(library/'src/imu_inference'):
         raise ValueError('Library source differs from the frozen wheel')
+    if hashlib.sha256(json.dumps(contents, sort_keys=True).encode()).hexdigest() != \
+            regression['candidate_inventory_sha256']:
+        raise ValueError('Library source differs from the regression-tested candidate')
     consistency = docs['image-consistency.json']
+    if consistency['source_commit'] != subprocess.check_output(
+            ['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip():
+        raise ValueError('Image source commit differs from this checkout')
     if consistency['service_version'] != version or consistency['library_version'] != lib_version:
         raise ValueError('Image versions differ')
     exported = docs['image-export.json']
@@ -78,18 +95,23 @@ def check(root, library, images):
             raise ValueError(f'Missing container acceptance: {key}')
     installed = docs['clean-install.json']
     if (installed['imported_archive'] != exported['archive'] or not installed['new_database'] or
+            not installed['environment_created_by_release_cli'] or
             installed['archive_sha256'] != exported['sha256']):
         raise ValueError('Clean offline installation was not validated')
     from imu_services.release import release_info
     if docs['release-identity.json'] != release_info():
         raise ValueError('Release identity does not match this environment')
     evidence = {n: digest(report_dir/n) for n in names+['service-tests.xml']}
-    evidence['library-tests.xml'] = digest(library/'provenance/delivery-library-tests.xml')
+    evidence['library-tests.xml'] = digest(library_tests_path)
+    evidence['patch-equivalence.json'] = digest(library/f'provenance/{lib_version}/patch-equivalence.json')
+    evidence['build-validation.json'] = digest(library/f'.release/{lib_version}/build-validation.json')
+    evidence['source-license-review.json'] = digest(library/'provenance/source-license-review.json')
     return dict(schema='imu.delivery.acceptance.v2', engineering_passed=True,
+                public_release_allowed=build['public_release_allowed'],
                 customer_accuracy_accepted=False, production_deployed=False,
                 service_version=version, library_version=lib_version, wheel_sha256=wheel_sha,
                 service_tests=service_tests, library_tests=library_tests,
                 evidence=evidence, inherited_model_evidence='evidence/model-baseline-1.0.0',
                 limitations=['Research reference is not independent customer validation',
                              'Original 24/25-hour capacity belongs to the unchanged model and original host',
-                             'This release adds calendar statistics; it does not improve model accuracy'])
+                             'This patch updates delivery and licensing; it does not improve model accuracy'])

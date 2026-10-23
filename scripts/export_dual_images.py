@@ -20,7 +20,7 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     args = p.parse_args()
     verified = json.loads(args.verification.read_text())
-    if not verified["passed"] or verified["library_version"] != "1.0.0":
+    if not verified["passed"] or verified["library_version"] != "1.0.1":
         raise ValueError("verify candidate first")
     refs = {r["reference"]: inspect(r["reference"]) for r in verified["images"]}
     for row in verified["images"]:
@@ -28,7 +28,7 @@ def main():
     postgres = "localhost/imu-postgres:18-20261020"
     refs[postgres] = inspect(postgres)
     args.output.mkdir(parents=True, exist_ok=True)
-    target = args.output / "imu-images-1.1.0.tar.gz"
+    target = args.output / "imu-images-1.1.1.tar.gz"
     if target.exists():
         raise FileExistsError("refusing to replace an existing export")
     partial = target.with_suffix(".gz.partial")

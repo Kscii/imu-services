@@ -53,7 +53,7 @@ def test_http_lifecycle_duplicate_ordering_and_immutable_results(store, backend,
         assert api.post(f"/v2/runs/{run_id}/batches", json=batches[0], headers=headers).status_code == 409
         rows = query.get(f"/v2/runs/{run_id}/results", headers=headers).json()["items"]
         assert rows and rows[-1]["final"]
-        assert rows[-1]["provenance"]["library_version"] == "1.0.0"
+        assert rows[-1]["provenance"]["library_version"] == "1.0.1"
         last = rows[-1]["id"]
         assert query.get(f"/v2/runs/{run_id}/results?after={last}", headers=headers).json()["items"] == []
         assert "checkpoint" not in query.get(f"/v2/runs/{run_id}", headers=headers).json()

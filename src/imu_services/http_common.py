@@ -51,7 +51,7 @@ def make_app(settings, title, store=None):
         if store is None:
             app.state.store.close()
 
-    app = FastAPI(title=title, version="1.1.0", lifespan=lifespan)
+    app = FastAPI(title=title, version="1.1.1", lifespan=lifespan)
     app.add_middleware(BodyLimit, limit=settings.max_body_bytes)
     registry = CollectorRegistry()
     requests = Counter("imu_http_requests_total", "HTTP requests", ["method", "route", "status"], registry=registry)
