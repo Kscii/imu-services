@@ -1,6 +1,6 @@
 # 接口指南
 
-服务 1.1.0，HTTP v2。接入默认 `http://127.0.0.1:8100`，查询默认 `http://127.0.0.1:8101`。请求头 `Authorization: Bearer <token>`：接入用 IMU_WRITE_TOKEN，查询分析用 IMU_READ_TOKEN。这是内部服务鉴权，不承担终端用户或租户隔离。
+服务 1.1.1，HTTP v2。接入默认 `http://127.0.0.1:8100`，查询默认 `http://127.0.0.1:8101`。请求头 `Authorization: Bearer <token>`：接入用 IMU_WRITE_TOKEN，查询分析用 IMU_READ_TOKEN。这是内部服务鉴权，不承担终端用户或租户隔离。
 
 运行后的 `/openapi.json` 提供接口结构；字段严格校验。完整示例见 [examples](../examples/)。
 
